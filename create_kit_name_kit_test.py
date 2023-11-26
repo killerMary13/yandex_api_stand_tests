@@ -17,7 +17,7 @@ def positive_assert(name):
 # Функция негативной проверки
 def negative_assert(kit_body):
     kit_response = sender_stand_request.post_create_kit_new_user(kit_body)
-    assert kit_response.status_code == 400 or 500
+    assert kit_response.status_code == 400
 
 # Тест 1. Допустимое количество символов (1):
 def test_create_kit_name_with_1_symbol():
@@ -29,12 +29,14 @@ def test_create_kit_name_with_max_symbols():
         "AbcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdAbcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabC")
 
 # Тест 3. Количество символов меньше допустимого (0):
-def test_create_kit_name_with_0_symbols():
-    negative_assert("")
+def test_create_kit_name_with_0_symbol():
+    kit_body = get_kit_body("")
+    negative_assert(kit_body)
 
 # Тест 4. Количество символов больше допустимого (512):
 def test_create_kit_name_with_more_max_symbols():
-    negative_assert("AbcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdAbcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcD")
+    kit_body = get_kit_body("AbcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdAbcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcD")
+    negative_assert(kit_body)
 
 # Тест 5. Разрешены английские буквы:
 def test_create_kit_name_with_en_symbols():
@@ -64,4 +66,5 @@ def test_create_kit_name_none():
 
 # Тест 11. Передан другой тип параметра (число):
 def test_create_kit_with_invalide_type():
-    negative_assert(123)
+    kit_body = get_kit_body(123)
+    negative_assert(kit_body)
