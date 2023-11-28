@@ -8,13 +8,10 @@ def post_new_user(body):
                          json=body,
                          headers=data.headers)
 
-response = post_new_user(data.user_body)
-
-# Сохранение токена пользователя
-data.headers_AuthToken["Authorization"] = "Bearer " + str(response.json()['authToken'])
-
+# Создание набора
 def post_create_kit_new_user(body):
+    response = post_new_user(data.user_body)
+    data.headers["Authorization"] = "Bearer " + str(response.json()['authToken'])
     return requests.post(configuration.URL_SERVICE + configuration.MAIN_KITS,
-                         headers=data.headers_AuthToken,
+                         headers=data.headers,
                          json=body)
-response = post_create_kit_new_user(data.kit_body)

@@ -2,11 +2,6 @@ headers = {
     "Content-Type": "application/json"
 }
 
-headers_AuthToken = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer {authToken}"
-}
-
 user_body = {
     "firstName": "Анатолий",
     "phone": "+79995553322",

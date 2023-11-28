@@ -5,7 +5,7 @@
 - запущен сервер `serverhub.praktikum-services.ru` в локальном режиме
 - после запуска сервера его url должен быть внесён в файл `configuration.py` в следующую строку:
 ```
-URL_SERVICE = 'https://2a9ea033-2177-474a-ac63-71e752d6219b.serverhub.praktikum-services.ru'
+URL_SERVICE = 'https://f05e1191-5357-4f85-9266-0954b7912500.serverhub.praktikum-services.ru'
 ```
 
 Запуск всех тестов в пакете выполняется командой `create_kit_name_kit_test.py`
